@@ -16,4 +16,9 @@ class Project extends Model
         'client',
         'type_id'
     ];
+
+    public function type()
+    {
+       return $this->belongsTo(Type::class);
+    }
 }
