@@ -72,3 +72,13 @@ Creazione del modello Project con relativa migrazione, seeder, controller e rott
 Per la parte di back-office creiamo un resource controller Admin\ProjectController per gestire tutte le operazioni CRUD dei progetti
 Bonus
 Implementiamo la validazione dei dati dei Progetti nelle operazioni CRUD che lo richiedono usando due form requests.
+
+
+<!--
+Schema::create('types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name',64);
+            $table->string('slug', 255);
+            $table->timestamps();
+        }); 
+ -->

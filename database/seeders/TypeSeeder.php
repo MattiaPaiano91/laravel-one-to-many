@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 // Helpers
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Schema;
 
 //Models
 use App\Models\Type;
@@ -19,12 +20,15 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
-        Type::truncate();
-
+            
         for ($i = 0; $i < 10; $i++) {
-            $project = new Type();
-            $Type_name = fake()->name();
-            $slug = Str::slug($Type_name);
+            $type = new Type();
+            $type->name = fake()->word();
+            $slug = Str::slug($type->name);
+            $type->slug = $slug;
+            $type->save();
         }
     }
 }
+        
+

@@ -7,9 +7,11 @@ use Illuminate\Database\Seeder;
 
 // Helpers
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Schema;
 
 //Models
 use App\Models\Project;
+use App\Models\Type;
 
 
 class ProjectSeeder extends Seeder
@@ -19,16 +21,19 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::truncate();
+        Schema::withoutForeignKeyConstraints(function(){
+            Project::truncate();
+        });
 
         for ($i = 0; $i < 10; $i++) {
             $project = new Project();
             $title = fake()->sentence();
-            $slug = Str::slug($title);
             $project->title = $title;
             $project->description = fake()->paragraph();
+            $slug = Str::slug($title);
             $project->slug = $slug;
             $project->client = fake()->name();
+            $project->type_id = Type::inRandomOrder()->first()->id;
             $project->save();
         }
     }

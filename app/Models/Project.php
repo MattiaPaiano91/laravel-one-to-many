@@ -14,5 +14,6 @@ class Project extends Model
         'description',
         'slug',
         'client',
+        'type_id'
     ];
 }
